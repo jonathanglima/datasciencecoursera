@@ -1,14 +1,11 @@
+source("checkingFunctions.R")
+
 best <- function(state, outcome) {
   ## Read outcome data
   table <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
   ## Check that state and outcome are valid
-  if (!any(table$State == state, na.rm = TRUE)) {
-    stop("invalid state")
-  }
-  
-  if (!any(c("heart attack", "heart failure", "pneumonia") == outcome, na.rm = TRUE)) {
-    stop("invalid outcome")
-  }
+  checkStateIsValid(table, state)
+  checkOutcomeIsValid(outcome)
   ## Return hospital name in that state with lowest 30-day death
   table <- table[which(table$State == state),]
   
