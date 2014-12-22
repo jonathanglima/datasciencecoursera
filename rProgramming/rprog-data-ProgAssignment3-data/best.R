@@ -1,8 +1,9 @@
 source("checkingFunctions.R")
+source("readOutcomeData.R")
 
 best <- function(state, outcome) {
   ## Read outcome data
-  table <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
+  table <- readOutcomeData()
   ## Check that state and outcome are valid
   checkStateIsValid(table, state)
   checkOutcomeIsValid(outcome)
